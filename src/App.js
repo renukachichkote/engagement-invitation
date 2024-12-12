@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 
 const EngagementInvitation = () => {
-  const [theme, setTheme] = useState({
+  const [theme] = useState({
     primaryColor: "#10B981", // Emerald green
     secondaryColor: "#D1FAE5", // Light mint green
     accentColor: "#059669", // Deep green
