@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 
 const EngagementInvitation = () => {
   const [theme] = useState({
@@ -17,7 +17,7 @@ const EngagementInvitation = () => {
 
   const audioRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [audioAllowed, setAudioAllowed] = useState(false);
+  const [setAudioAllowed] = useState(false);
 
   const toggleAudio = () => {
     if (audioRef.current) {
