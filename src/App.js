@@ -17,7 +17,6 @@ const EngagementInvitation = () => {
 
   const audioRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [setAudioAllowed] = useState(false);
 
   const toggleAudio = () => {
     if (audioRef.current) {
@@ -27,25 +26,24 @@ const EngagementInvitation = () => {
       } else {
         audioRef.current
           .play()
-          .then(() => {
-            setIsPlaying(true);
-            setAudioAllowed(true);
-          })
-          .catch((error) => {
-            console.error("Audio play error:", error);
-            setIsPlaying(false);
-          });
+          .then(() => setIsPlaying(true))
+          .catch((error) => console.error("Audio play error:", error));
       }
     }
   };
 
+  const handledAudioEnd = () => {
+    setIsPlaying(false);
+  };
+
   // Enhanced Intricate Flower Decoration (unchanged)
-  const ElaborateFlowerDecoration = ({ className, colors }) => (
+  const ElaborateFlowerDecoration = ({ className, colors, scale = 1 }) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 200 200"
       className={className}
       aria-hidden="true"
+      style={{ transform: `scale(${scale})` }}
     >
       <defs>
         <radialGradient id="elaborateFlowerGradient" cx="50%" cy="50%" r="50%">
@@ -60,10 +58,10 @@ const EngagementInvitation = () => {
       {[0, 45, 90, 135, 180, 225, 270, 315].map((rotation) => (
         <g key={rotation} transform={`rotate(${rotation} 100 100)`}>
           <path
-            d="M100 100 
-               Q120 50, 100 20 
-               Q80 50, 100 100 
-               Q120 150, 100 180 
+            d="M100 100
+               Q120 50, 100 20
+               Q80 50, 100 100
+               Q120 150, 100 180
                Q80 150, 100 100"
             fill="url(#elaborateFlowerGradient)"
             stroke={colors.accentColor}
@@ -83,12 +81,13 @@ const EngagementInvitation = () => {
   );
 
   // Enhanced Leaf Decoration (unchanged)
-  const IntricateLeafDecoration = ({ className, colors }) => (
+  const IntricateLeafDecoration = ({ className, colors, scale = 1 }) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 200 200"
       className={className}
       aria-hidden="true"
+      style={{ transform: `scale(${scale})` }}
     >
       <defs>
         <linearGradient id="leafGradient" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -155,14 +154,14 @@ const EngagementInvitation = () => {
           0%, 100% { transform: scale(1); }
           50% { transform: scale(1.05); }
         }
-        .animate-fade-in { 
+        .animate-fade-in {
           animation: fadeIn 1s ease-out forwards;
           opacity: 0;
         }
-        .animate-float { 
+        .animate-float {
           animation: floatAnimation 4s ease-in-out infinite;
         }
-        .animate-bloom { 
+        .animate-bloom {
           animation: bloomAnimation 5s ease-in-out infinite;
         }
         .animate-pulse {
@@ -180,6 +179,7 @@ const EngagementInvitation = () => {
         <audio
           ref={audioRef}
           src="/audio.mp3"
+          onEnded={handledAudioEnd}
           aria-label="Background music for engagement invitation"
         />
 
@@ -187,22 +187,25 @@ const EngagementInvitation = () => {
         <div className="absolute inset-0 pointer-events-none z-0">
           {/* Corner Decorations with More Elaborate Flowers */}
           <ElaborateFlowerDecoration
-            className="absolute top-0 left-0 w-32 h-32 md:w-48 md:h-48 animate-float opacity-70 transform -rotate-45"
+            className="absolute top-0 left-0 w-32 h-32 animate-float opacity-70 transform -rotate-45"
             colors={theme}
+            scale={1.2}
           />
           <ElaborateFlowerDecoration
             className="absolute top-0 right-0 w-32 h-32 md:w-48 md:h-48 animate-float opacity-70 transform rotate-45"
             colors={theme}
+            scale={1.2}
           />
-          <IntricateLeafDecoration
+          <ElaborateFlowerDecoration
             className="absolute bottom-0 left-0 w-32 h-32 md:w-48 md:h-48 animate-bloom opacity-60 transform -rotate-90"
             colors={theme}
+            scale={1}
           />
-          <IntricateLeafDecoration
+          <ElaborateFlowerDecoration
             className="absolute bottom-0 right-0 w-32 h-32 md:w-48 md:h-48 animate-bloom opacity-60 transform rotate-90"
             colors={theme}
+            scale={1}
           />
-
           {/* Additional Corner Flowers and Leaves */}
           <ElaborateFlowerDecoration
             className="absolute top-1/4 left-4 w-24 h-24 md:w-32 md:h-32 animate-float opacity-50 transform -rotate-15"
@@ -246,16 +249,16 @@ const EngagementInvitation = () => {
                 Vijaylaxmi
               </p>
               <span
-                className="animate-fade-in"
+                className="animate-fade-in font-semibold"
                 style={{
                   display: "inline-block",
-                  fontSize: "1.5rem",
+                  fontSize: ".8rem",
                   color: theme.complementaryColor,
                   animationDelay: "0.6s",
                 }}
                 aria-label="and"
               >
-                &hearts;
+                AND
               </span>
               <p
                 className="text-4xl mt-1 animate-fade-in font-semibold"
@@ -308,10 +311,10 @@ const EngagementInvitation = () => {
               <button
                 onClick={toggleAudio}
                 className={`
-                  px-5 py-2 rounded-full 
-                  transition-all duration-300 
-                  hover:shadow-lg 
-                  focus:outline-none 
+                  px-5 py-2 rounded-full
+                  transition-all duration-300
+                  hover:shadow-lg
+                  focus:outline-none
                   ${isPlaying ? "animate-pulse" : ""}
                 `}
                 style={{
