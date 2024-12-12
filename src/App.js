@@ -80,54 +80,6 @@ const EngagementInvitation = () => {
     </svg>
   );
 
-  // Enhanced Leaf Decoration (unchanged)
-  const IntricateLeafDecoration = ({ className, colors, scale = 1 }) => (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 200 200"
-      className={className}
-      aria-hidden="true"
-      style={{ transform: `scale(${scale})` }}
-    >
-      <defs>
-        <linearGradient id="leafGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop
-            offset="0%"
-            stopColor={colors.tertiaryColor}
-            stopOpacity="0.7"
-          />
-          <stop
-            offset="100%"
-            stopColor={colors.complementaryColor}
-            stopOpacity="0.3"
-          />
-        </linearGradient>
-      </defs>
-      <path
-        d="M100 100
-           C70 50, 50 80, 70 120
-           C90 160, 130 140, 100 100
-           C70 60, 90 40, 100 100
-           C130 160, 150 80, 100 100"
-        fill="url(#leafGradient)"
-        stroke={colors.accentColor}
-        strokeWidth="3"
-        opacity="0.8"
-      />
-      <path
-        d="M100 100
-           Q80 70, 90 50
-           Q110 30, 100 100
-           Q90 170, 110 150
-           Q120 130, 100 100"
-        fill="none"
-        stroke={colors.secondaryColor}
-        strokeWidth="1.5"
-        opacity="0.5"
-      />
-    </svg>
-  );
-
   return (
     <>
       {/* Google Fonts Link with Added Font Weights */}
