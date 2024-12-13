@@ -247,9 +247,11 @@ const EngagementInvitation = () => {
                 }}
                 className="not-italic font-semibold text-sm"
               >
-                Date: December 25, 2024
+                December 25, 2024
                 <br />
-                Tara Bangarage Kalyan Mantap, near High Court
+                Ravindra Bangarage Function Hall,
+                <br />
+                Udnoor Cross, High Court Ring Road,
                 <br />
                 KALABURAGI
               </address>
