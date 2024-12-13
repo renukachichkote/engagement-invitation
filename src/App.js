@@ -220,7 +220,7 @@ const EngagementInvitation = () => {
                   animationDelay: "0.8s",
                 }}
               >
-                Viresh
+                Veeresh
               </p>
             </div>
 
